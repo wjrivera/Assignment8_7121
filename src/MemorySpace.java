@@ -1,7 +1,11 @@
 /**
- * Created by WilliamJ on 12/2/2015.
+ * Author:      7121
+ * Date:        12/1/15
+ * Class:       Operating Systems
+ * Purpose:     MemorySpace class for Stack-Based Least Recently Used algorithm.
+ *              Suppose each page store just an integer
  */
-// suppose each page stores just an integer
+
 public class MemorySpace {
 
     // feel free to declare any variables

@@ -1,7 +1,10 @@
 /**
- * Created by WilliamJ on 12/2/2015.
+ * Author:      7121
+ * Date:        12/1/15
+ * Class:       Operating Systems
+ * Purpose:     PageReplacementShortTest class for Stack-Based Least Recently Used algorithm.
+ *              Correct output: 5,2,7,1,2,4,-1,-1,11,12,-1,8
  */
-// Correct output: 5,2,7,1,2,4,-1,-1,11,12,-1,8
 
 public class PageReplacementShortTest {
     public static final int CAPACITY=10;

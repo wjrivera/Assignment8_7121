@@ -1,6 +1,11 @@
 /**
- * Created by WilliamJ on 12/2/2015.
+ * Author:      7121
+ * Date:        12/1/15
+ * Class:       Operating Systems
+ * Purpose:     PageReplacementLongTest class for Stack-Based Least Recently Used algorithm.
+ *              This program should complete in less than 100 milliseconds (0.5 seconds)
  */
+
 import java.util.Random;
 
 public class PageReplacementLongTest {
