@@ -9,7 +9,7 @@
 public class MemorySpace{
 
     //Create Node, head, capacity and size variables
-    private final Node[] pages = new Node[100000];
+    private final Node[] pages = new Node[1000000];
     private final Node head = new Node(-1);
     private final int capacity;
     private int size;
@@ -49,7 +49,7 @@ public class MemorySpace{
         }
         else {
 
-            return node.content;        //node has content
+            return node.content;        //node has content, return it
 
         }
 
