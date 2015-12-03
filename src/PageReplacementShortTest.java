@@ -7,14 +7,21 @@
  */
 
 public class PageReplacementShortTest {
+
     public static final int CAPACITY=10;
+
     public static void main(String args[]){
+
         test(new MemorySpace(CAPACITY));
+
     }
 
     private static void test(MemorySpace stack){
+
         for(int i=0;i<10;i++){
+
             stack.update(i, i);
+
         }
 
         System.out.printf("%d,",stack.read(5));
@@ -34,6 +41,8 @@ public class PageReplacementShortTest {
         stack.update(14, 14);
         System.out.printf("%d,",stack.read(6));
         System.out.printf("%d",stack.read(8));
+
     }
+
 }
 

@@ -6,9 +6,21 @@
  *              Suppose each page store just an integer
  */
 
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
+
+
 public class MemorySpace {
 
     // feel free to declare any variables
+
+    Queue<Object> queue;
+    int CAPACITY;
+
+    Map<Integer, Integer> linkedHashMap;
+
 
     /**
      * capacity indicates the maximum number of pages in the physical memory space
@@ -16,7 +28,13 @@ public class MemorySpace {
      * @param capacity suppose it is always positive
      */
     public MemorySpace(int capacity) {
+
         // add your code
+        CAPACITY=capacity;
+        linkedHashMap= new LinkedHashMap<Integer, Integer>(capacity);
+        queue=new LinkedList<Object>();
+        queue.add("HI");
+
     }
 
     /**
@@ -30,8 +48,15 @@ public class MemorySpace {
      * @return
      */
     public int read(int page) {
+
         // add your code
-        return 0;
+        if(linkedHashMap.containsKey(page)){
+            return linkedHashMap.get(page);
+        }else{
+            return -1;
+        }
+        //return 0;
+
     }
 
     /**
@@ -45,7 +70,23 @@ public class MemorySpace {
      * @param content
      */
     public void update(int page, int content) {
+
         // add your code
+
+        if(linkedHashMap.containsKey(page)){
+            linkedHashMap.replace(page, content);
+        }else{
+            if(linkedHashMap.size()==CAPACITY){
+                linkedHashMap.get(linkedHashMap.size()-1);
+
+
+            }else{
+                linkedHashMap.put(page, content);
+            }
+
+        }
+
     }
+
 }
 
