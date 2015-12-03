@@ -6,32 +6,24 @@
  *              Suppose each page store just an integer
  */
 
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
-
 public class MemorySpace{
 
-    //Create Queue and Capacity variables
-    Queue<Object> Queue;
-    int Capacity;
-
-    Map<Integer, Integer> linkedHashMap;
-
+    //Create Node, head, capacity and size variables
+    private final Node[] pages = new Node[100000];
+    private final Node head = new Node(-1);
+    private final int capacity;
+    private int size;
 
     /**
      * capacity indicates the maximum number of pages in the physical memory space
      *
      * @param capacity suppose it is always positive
      */
+    //Constructor
     public MemorySpace(int capacity) {
 
-        //Set capacity, create LinkedHashMap and Queue
-        Capacity = capacity;
-        linkedHashMap = new LinkedHashMap<Integer, Integer>(capacity);
-        Queue = new LinkedList<Object>();
-        //Queue.add("HI");
+        this.capacity = capacity;
+        head.next = head.previous = head;
 
     }
 
@@ -48,14 +40,16 @@ public class MemorySpace{
     public int read(int page) {
 
         //Complexity of O(1)
-        if(linkedHashMap.containsKey(page)){
+        Node node = pages[page];
 
-            return linkedHashMap.get(page);     //Get page contents
+        if (node == null) {
+
+            return -1;                  //No content on node
 
         }
-        else{
+        else {
 
-            return -1;                          //Not in Physical Memory
+            return node.content;        //node has content
 
         }
 
@@ -74,23 +68,53 @@ public class MemorySpace{
     public void update(int page, int content) {
 
         //Complexity of O(1)
-        if(linkedHashMap.containsKey(page)){
+        Node node = pages[page];
 
-            linkedHashMap.replace(page, content);               //Overwrite current content
+        if (node == null) {
+
+            node = pages[page] = new Node(page);        //Create new page
+            size++;
 
         }
-        else{
+        else {
 
-            if(linkedHashMap.size()== Capacity){
+            node.next.previous = node.previous;         //Remove existing page
+            node.previous.next = node.next;
 
-                linkedHashMap.get(linkedHashMap.size()-1);      //Capacity Reached
+        }
 
-            }
-            else{
+        Node last = head.previous;          //Add node to head of list
+        last.next = node;
+        node.previous = last;
+        head.previous = node;
+        node.next = head;
+        node.content = content;
 
-                linkedHashMap.put(page, content);               //Add new page into physical memory
 
-            }
+        if (size >= capacity) {                         //If capacity was reached
+
+            Node first = head.next;                     //Remove first page
+            first.next.previous = first.previous;
+            first.previous.next = first.next;
+            pages[first.page] = null;
+            size--;
+
+        }
+
+    }
+
+    //Linked List Node class that, last node is null
+    private static final class Node {
+
+        private final int page;
+        private int content;
+        private Node previous;
+        private Node next;
+
+        //Constructor
+        public Node(int page) {
+
+            this.page = page;
 
         }
 
