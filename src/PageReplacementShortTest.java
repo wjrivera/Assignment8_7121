@@ -4,21 +4,22 @@
  * Class:       Operating Systems
  * Purpose:     PageReplacementShortTest class for Stack-Based Least Recently Used algorithm.
  *              Correct output: 5,2,7,1,2,4,-1,-1,11,12,-1,8
+ *              This class should remain untouched
  */
 
 public class PageReplacementShortTest {
 
-    public static final int CAPACITY=10;
+    public static final int Capacity = 10;
 
     public static void main(String args[]){
 
-        test(new MemorySpace(CAPACITY));
+        test(new MemorySpace(Capacity));
 
     }
 
     private static void test(MemorySpace stack){
 
-        for(int i=0;i<10;i++){
+        for(int i = 0; i < 10; i++){
 
             stack.update(i, i);
 

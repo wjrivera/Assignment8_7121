@@ -4,18 +4,19 @@
  * Class:       Operating Systems
  * Purpose:     PageReplacementLongTest class for Stack-Based Least Recently Used algorithm.
  *              This program should complete in less than 100 milliseconds (0.5 seconds)
+ *              This class should remain untouched
  */
 
 import java.util.Random;
 
 public class PageReplacementLongTest{
 
-    public static final int CAPACITY=100000;
+    public static final int Capacity = 100000;
 
     public static void main(String args[]){
 
         long before = System.currentTimeMillis();
-        test(new MemorySpace(CAPACITY));
+        test(new MemorySpace(Capacity));
         long after = System.currentTimeMillis();
         System.out.printf("Test completed in %d milliseconds", after-before);
 
@@ -25,17 +26,17 @@ public class PageReplacementLongTest{
 
         Random rand = new Random();
 
-        for(int i=0;i<CAPACITY/2;i++){
+        for(int i = 0; i < Capacity / 2; i++){
 
             stack.update(i, i);
 
         }
 
-        for(int i=0;i<CAPACITY;i++){
+        for(int i = 0; i < Capacity; i++){
 
-            int randNum = rand.nextInt(CAPACITY);
+            int randNum = rand.nextInt(Capacity);
 
-            if(i%2==0){
+            if(i % 2 == 0){
 
                 stack.update(randNum, randNum);
 

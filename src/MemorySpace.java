@@ -11,13 +11,11 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 
+public class MemorySpace{
 
-public class MemorySpace {
-
-    // feel free to declare any variables
-
-    Queue<Object> queue;
-    int CAPACITY;
+    //Create Queue and Capacity variables
+    Queue<Object> Queue;
+    int Capacity;
 
     Map<Integer, Integer> linkedHashMap;
 
@@ -29,11 +27,11 @@ public class MemorySpace {
      */
     public MemorySpace(int capacity) {
 
-        // add your code
-        CAPACITY=capacity;
-        linkedHashMap= new LinkedHashMap<Integer, Integer>(capacity);
-        queue=new LinkedList<Object>();
-        queue.add("HI");
+        //Set capacity, create LinkedHashMap and Queue
+        Capacity = capacity;
+        linkedHashMap = new LinkedHashMap<Integer, Integer>(capacity);
+        Queue = new LinkedList<Object>();
+        //Queue.add("HI");
 
     }
 
@@ -49,13 +47,17 @@ public class MemorySpace {
      */
     public int read(int page) {
 
-        // add your code
+        //Complexity of O(1)
         if(linkedHashMap.containsKey(page)){
-            return linkedHashMap.get(page);
-        }else{
-            return -1;
+
+            return linkedHashMap.get(page);     //Get page contents
+
         }
-        //return 0;
+        else{
+
+            return -1;                          //Not in Physical Memory
+
+        }
 
     }
 
@@ -71,17 +73,23 @@ public class MemorySpace {
      */
     public void update(int page, int content) {
 
-        // add your code
-
+        //Complexity of O(1)
         if(linkedHashMap.containsKey(page)){
-            linkedHashMap.replace(page, content);
-        }else{
-            if(linkedHashMap.size()==CAPACITY){
-                linkedHashMap.get(linkedHashMap.size()-1);
 
+            linkedHashMap.replace(page, content);               //Overwrite current content
 
-            }else{
-                linkedHashMap.put(page, content);
+        }
+        else{
+
+            if(linkedHashMap.size()== Capacity){
+
+                linkedHashMap.get(linkedHashMap.size()-1);      //Capacity Reached
+
+            }
+            else{
+
+                linkedHashMap.put(page, content);               //Add new page into physical memory
+
             }
 
         }
